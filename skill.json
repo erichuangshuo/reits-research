@@ -1,10 +1,10 @@
 {
   "name": "reits-research",
   "version": "4.0.0",
-  "description": "中国保障性租赁住房公募REITs深度研究方法论 — 资产成本、ROI杜邦分解、土地折价、现金流追溯",
+  "description": "中国保障性租赁住房公募REITs深度研究方法论 — 资产成本拆解、ROI杜邦分解、土地折价量化、现金流追溯",
   "author": "erichuangshuo",
   "license": "MIT",
-  "keywords": ["REITs", "保租房", "房地产投资信托", "资产分析", "行业研究", "中国REITs"],
+  "keywords": ["REITs", "保租房", "房地产投资信托", "资产分析", "行业研究", "中国REITs", "金融分析"],
   "claudeCode": {
     "skill": "SKILL.md",
     "triggers": [
@@ -13,8 +13,7 @@
       "保障房REITs对比",
       "REITs现金流分析",
       "REITs ROI分析",
-      "REITs 资产成本",
-      "REITs 研究报告"
+      "REITs研究报告"
     ]
   },
   "repository": {
