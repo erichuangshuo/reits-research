@@ -1,301 +1,266 @@
 ---
 name: reits-affordable-housing-research
-description: 中国保障性租赁住房REITs全面研究方法论。触发条件：用户要求分析保租房REITs、公募REITs研究、保障房REITs对比、REITs现金流分析。核心产出：资产成本+土地占比、ROI、现金流分派率、折旧拆解、现金来源分析。
+description: Complete research methodology for China's affordable housing public REITs. Triggers: REITs analysis, affordable housing REITs comparison, cash flow analysis. Core outputs: asset cost + land ratio, ROI, cash flow distribution rate, depreciation breakdown, cash source analysis. / 中国保障性租赁住房REITs全面研究方法论。
 version: 4.0.0
 updated: 2026-05-30
-downstream: dahua-reits-benchmark
-tags: [REITs, 保租房, ROI, 现金流分派率, 折旧分析, 土地成本]
+tags: [REITs, affordable-housing, China-REITs, ROI, cash-flow, depreciation, land-cost, financial-analysis]
 ---
 
-# 保障性租赁住房REITs 研究方法论
-
----
-
-## Part A：研究工作流（每次必须执行）
-
-### A.1 时效性检查
-
-根据当前日期确定可用数据源：
-
-| 当前月份 | 可用最新报告 | 搜索重点 |
-|---------|------------|---------|
-| 1-4月 | 上年度Q3季报（上年度年报待披露） | 关注年报预告 |
-| **5-8月** | **上年度年报 + 当年Q1季报** | 最重要窗口 |
-| 9-10月 | 当年半年报 | 中期追踪 |
-| 11-12月 | 当年Q3季报 | 前三季度 |
-
-### A.2 研究必做清单（9步）
-
-```
-Step 1: 检索新上市REITs → 确认名单是否完整
-Step 2: 逐只搜索最新年报/季报 → 提取净利润、可供分配、净资产
-Step 3: 逐只获取资产成本 → 从招股书/年报投资性房地产附注
-Step 4: 逐只拆分土地成本 vs 建安成本 → 从招股书
-Step 5: 搜索折旧摊销数据 → 从现金流量表补充资料
-Step 6: 搜索经营现金流净额 → 从现金流量表
-Step 7: 搜索出租率、收缴率 → 从年报经营数据章节
-Step 8: 按 Part C 公式计算全部指标
-Step 9: 按 Part D 判断标准输出结论
-```
-
-### A.3 搜索关键词模板
-
-**新REITs发现**：
-```
-"保障性租赁住房REIT 上市 <当前年份>"
-"租赁住房REIT <当前年份> 新上市"
-"保租房公募REITs <当前年份> 名单"
-```
-
-**逐只搜索**（以城投宽庭为例）：
-```
-"<基金代码> <当前年份>年年度报告 净利润"
-"<基金代码> <当前年份>年第1季度报告 收入 可供分配"
-"<基金简称> REIT 出租率 <当前年份>"
-```
-
-**行业汇总**：
-```
-"保租房REITs <当前年份>Q<季度> 业绩对比"
-"租赁住房REITs <当前年份> 年报 汇总"
-"<当前年份>年保租房REITs 财报大赏"
-```
+# China Affordable Housing REITs — Research Methodology / 中国保租房REITs研究方法论
 
 ---
 
-## Part B：数据溯源规范（强制）
+## ⚠️ Data Timeliness Rule (CRITICAL) / 数据时效性
 
-### B.1 出处格式
+**This skill does NOT hardcode any time-specific data. Every analysis run MUST determine the current data window based on today's date and web-search for the latest available reports.**
 
-**每条数据必须标注**：`[来源类型] 完整文件名 | 披露日期 | P页码 | 具体章节`
+### Data Window / 数据窗口
 
 ```
-正确示例：
-[年报] 城投宽庭REIT 2025年年度报告 | 2026-03-26 | P30 | 合并利润表 净利润
-[招股书] 华润有巢REIT招募说明书 | 2022-11 | P150 | 基础设施项目 土地成本
-[季报] 中金厦门安居REIT 2026年Q1报告 | 2026-04-21 | P8 | 主要财务指标
-[扩募公告] 华夏北京保障房REIT扩募完成公告 | 2025-06-25 | 扩募份额上市
-
-错误示例（禁止）：
-[年报]           ← 缺少文件名、页码、位置
-[招股书] P150    ← 缺少文件名、位置
+Jan-Apr → Previous year Q3 + Semi-Annual
+May-Aug → Previous year Annual + Current year Q1 ← MOST IMPORTANT
+Sep-Oct → Current year Semi-Annual
+Nov-Dec → Current year Q3
 ```
 
-### B.2 各指标在年报中的标准位置
+### Mandatory Web Searches Before Each Analysis / 每次分析前强制搜索
 
-| 指标 | 年报标准位置 | 季报标准位置 |
-|------|------------|------------|
-| 净利润 | 合并利润表（通常P20-P30） | 主要财务指标（通常P5-P8） |
-| 可供分配金额 | 可供分配金额计算表（附注，通常P35-P40） | 主要财务指标 |
-| 折旧摊销 | 现金流量表补充资料（附注） | 不单独披露（季报简略） |
-| 经营现金流净额 | 现金流量表 | 主要财务指标 |
-| 投资性房地产账面原值 | 投资性房地产附注（通常P50-P60） | 不披露 |
-| 期末净资产 | 合并资产负债表 | 主要财务指标 |
-| 出租率/收缴率 | 基础设施项目运营情况（通常P10-P15） | 基础设施项目运营情况 |
+```
+1. Latest REIT financials: "<fund code> <year> annual report net profit"
+2. Latest land prices: "<city> <district> residential land auction price"
+3. New REIT listings: "affordable housing REIT new listing <year>"
+4. Project details: "<fund> underlying assets area units <year>"
+```
 
-### B.3 招股说明书中的关键页码
-
-| 基金 | ⚠️ 代码勘误 | 资产成本(万元) | 招股书页码 | 土地成本出处 |
-|------|:---:|:-----:|:---:|------|
-| 华润有巢 508077 | — | 118,900 | P150 | 资产明细→土地成本分项 |
-| 红土深圳安居 180401 | — | 117,000 | P102 | 资产明细→土地成本5.82亿+建安5.88亿 |
-| 华泰苏州恒泰 508085 | ⚠️ 非"交小" | 141,200 | P76 | 决算总投资构成→土地2.67亿 |
-| 汇添富上海 508055 | — | 94,771 | P89 | 资产评估明细 |
-| 中金厦门安居 508058 | — | 121,400 | P95 | 资产评估→园博7.04亿+珩琦5.10亿 |
-| 华夏北京 508068 | ⚠️ 508072不存在 | 124,000(首发) | P110 | 资产明细（注：划拨地，土地成本低） |
-| 城投宽庭 508031 | — | 263,402 | P50(年报) | 年报投资性房地产附注 |
+**PROHIBITED: Using example values from this skill. All values MUST come from live web search.**
 
 ---
 
-## Part C：指标体系与计算公式
+## Core Formulas / 核心公式
 
-### C.1 6项核心指标
+| Metric | Formula | Description |
+|-----|-----|-----|
+| **Asset Cost** (资产成本) | Land + Construction | Book value, from prospectus |
+| **Land Cost Ratio** (土地占比) | Land ÷ Asset Cost | Tier-1: 25-50%, Tier-2: 19-27% |
+| **ROI** | EBITDA ÷ Asset Cost | Asset earning power |
+| **Distribution Rate** (分派率) | Distributable Income ÷ NAV | Shareholder cash return |
+| **Depreciation Rate** (折旧率) | Annual Depr ÷ Asset Cost | 1.5-4%/yr; higher = newer |
+| **Compression Multiple** (压缩倍数) | Distributable ÷ Net Profit | Healthy: 1.5-3x |
+| **Land Discount Ratio** (折价率) | Book Land Price ÷ Market Land Auction Price | "X折" = X×10% of market |
 
-| # | 指标 | 公式 | 用途 | 数据来源 |
-|---|------|-----|------|---------|
-| 1 | **资产成本** | 土地成本 + 建安成本 | ROI分母 | 招股书/年报投资性房地产附注 |
-| 2 | **土地占比** | 土地成本 ÷ 资产成本 | 成本结构 | 招股书分项 |
-| 3 | **ROI** | 净利润 ÷ 资产成本 | 资产真实收益 | 年报利润表+招股书 |
-| 4 | **现金流分派率** | 年度可供分配 ÷ 期末净资产 | 股东现金回报 | 年报可供分配表+资产负债表 |
-| 5 | **折旧率** | 年折旧 ÷ 资产成本 | 资产老化速度 | 年报现金流量表补充资料 |
-| 6 | **压缩倍数** | 可供分配 ÷ 净利润 | 折旧压缩程度 | 年报利润表+可供分配表 |
-
-### C.2 辅助指标
-
-| # | 指标 | 公式 | 用途 |
-|---|------|-----|------|
-| 7 | **现金流转化率** | 经营现金流净额 ÷ 营业收入 | 收入质量 |
-| 8 | **净资产溢价倍数** | 期末净资产 ÷ 资产成本 | 估值水位 |
-| 9 | **净利润率** | 净利润 ÷ 营业收入 | 运营效率 |
-
-### C.3 现金来源公式（核心分析框架）
-
-这是回答"钱从哪来"的核心公式——**每次研究必须定量拆解**：
+### Data Priority / 数据优先级
 
 ```
-可供分配金额 = 净利润           ← 会计利润
-              + 折旧和摊销      ← 账面计提但实际没花（核心来源）
-              - 实际资本性支出   ← 真金白银的维修维护
-              - 资产减值损失     ← 账面计提/非现金
-              + 其他调整        ← 利息加回、递延税等
-
-多出来的钱 = 折旧和摊销 - 实际资本性支出
+Annual Report (most authoritative) > Quarterly > Semi-Annual > Prospectus (static history only)
 ```
 
-**三层拆解框架**：
-```
-第一层：租金收入（基本盘）         → 出租率 × 收缴率 × 租金单价
-第二层：经营现金流净额（扣运营成本） → 现金流转化率
-第三层：折旧加回（核心来源）        → 折旧率 × 资产成本 - 实际资本支出
-```
+### Data Provenance (CRITICAL) / 数据溯源
 
-### C.4 定量数据获取清单（8项必获取）
+Every figure MUST be sourced: `[Report Type] Fund Name Year | P<page> | Specific Location`
 
-| # | 指标 | 获取位置 | 用途 |
-|---|------|---------|------|
-| 1 | 净利润 | 利润表 | ROI分子 |
-| 2 | 可供分配金额 | 可供分配计算表（附注） | 分派率分子+压缩倍数 |
-| 3 | 折旧和摊销 | 现金流量表补充资料 | 折旧率+现金来源 |
-| 4 | 营业收入 | 利润表 | 现金流转化率 |
-| 5 | 经营现金流净额 | 现金流量表 | 现金流转化率 |
-| 6 | 资产成本 | 投资性房地产附注/招股书 | ROI分母+折旧率分母 |
-| 7 | 期末净资产 | 资产负债表 | 分派率分母 |
-| 8 | 土地成本 | 招股书资产明细 | 土地占比 |
+**FORBIDDEN**: `[Annual Report]` without filename, page, and location.
 
 ---
 
-## Part D：判断标准与评级
+## Coverage: All 7 Listed REITs / 覆盖7只已上市REITs
 
-### D.1 健康阈值
+### Shanghai / 上海 (4)
 
-| 指标 | 🟢 健康 | 🟡 关注 | 🔴 预警 |
-|------|:-----:|:-----:|:-----:|
-| ROI | ≥ 2% | 1.5%-2% | < 1.5% |
-| 现金流分派率 | ≥ 3% | 2.5%-3% | < 2.5% |
-| 折旧率 | 1.5%-3% | 3%-4% | > 4% |
-| 压缩倍数 | 1.5x-3x | 3x-4x | > 4x |
-| 现金流转化率 | ≥ 60% | 40%-60% | < 40% |
-| 出租率 | ≥ 95% | 90%-95% | < 90% |
+| Ticker | Brand | Manager | Listed | Assets |
+|------|------|------|------|------|
+| 508031 | 城投宽庭 (Chengtou Kuanting) | Guotai Haitong AM | 2023-12 | Jiangwan + Guanghua (Yangpu) |
+| 508077 | 华润有巢 (CR Youchao) | China AMC | 2022-12 | Sijing + East Jingkai + Maqiao |
+| 508055 | 上海城方 (Shanghai Chengfang) | Huitianfu Fund | 2025-03 | Hongqiao Jingzhi + Chengfang Jiangyue |
+| 508085 | 恒泰租住 (Hengtai) | Huatai Securities AM | 2025-05 | Jingying Apts (Suzhou Industrial Park) |
 
-### D.2 综合评级规则
+### National / 全国 (3)
 
-| 评级 | 条件 |
-|:---:|------|
-| ⭐⭐⭐⭐⭐ | ROI ≥ 2% + 分派率 ≥ 3% + 折旧率 < 3% + 出租率 ≥ 95% |
-| ⭐⭐⭐⭐ | 满足3项 |
-| ⭐⭐⭐ | 满足2项 |
-| ⭐⭐ | 满足1项或多项预警 |
-| ⭐ | 多项预警或ROI为负 |
+| Ticker | Brand | Exchange | Listed | Assets |
+|------|------|------|------|------|
+| 508058 | 中金厦门安居 (CICC Xiamen) | SSE | 2022-08 | Yuanbo + Hengqi (Jimei) |
+| 180401 | 红土深圳安居 (Red Soil SZ) | SZSE | 2022-08 | 4 projects (Futian/Luohu/Dapeng/Pingshan) |
+| 508068 | 北京保障房中心 (Beijing) | SSE | 2022-08 | 6 projects post-expansion |
 
 ---
 
-## Part E：报告输出规范
+## Asset Cost Breakdown / 资产成本拆解
 
-### E.1 必须包含的章节
+### 508077 华润有巢 — Land Ratio 25.7%
+
+| Component | Amount (10K CNY) | Ratio | Source |
+|------|:---:|:---:|------|
+| Sijing Land | 12,500 | 10.5% | [Prospectus] P150 |
+| East Jingkai Land | 18,000 | 15.1% | [Prospectus] P150 |
+| **Total Land** | **30,500** | **25.7%** | |
+| Construction | 88,400 | 74.3% | [Prospectus] P150 |
+| **Total Asset Cost** | **118,900** | **100%** | |
+
+### 180401 红土深圳安居 — Land Ratio 49.7% (Highest)
+
+| Component | Amount | Ratio | Source |
+|------|:---:|:---:|------|
+| **Land Cost** | **58,200** | **49.7%** | [Prospectus] P102 |
+| Construction | 58,800 | 50.3% | [Prospectus] P102 |
+
+### 508085 恒泰租住 — Land Ratio 18.9% (Lowest)
+
+Land grant + deed tax: 26,700K (18.9%) | Construction: 114,500K (81.1%) | [Prospectus] P76
+
+### 508031 城投宽庭 — ~35% (R4 policy land)
+
+Jiangwan: 174,453K + Guanghua: 88,950K = **263,402K** | [Annual Report] P50
+
+### 508058 中金厦门安居 — ~27%
+
+Yuanbo: 70,400K + Hengqi: 51,000K = **121,400K** | [Prospectus] P95
+
+### 508068 北京保障房中心 — ~25% (allocated land)
+
+Original: 124,000K + Expansion: 94,600K = **218,600K** | [Prospectus] P110 + [Expansion] 2025-06
+
+### Land Ratio Cross-Comparison / 土地占比横评
+
+| Fund | Land % | City | Method |
+|------|:---:|------|------|
+| 红土深圳 | **49.7%** 🔴 | Shenzhen | Mixed |
+| 城投宽庭 | ~35% | Shanghai | R4 policy |
+| 上海城方 | ~32% | Shanghai | Conversion |
+| 中金厦门 | ~27% | Xiamen | Auction |
+| 华润有巢 | 25.7% | Shanghai | Auction |
+| 北京保障房 | ~25% | Beijing | Allocated |
+| 恒泰租住 | **18.9%** 🟢 | Suzhou | 2010 Agreement |
+
+**Core insight**: Higher land ratio → larger denominator → lower ROI. Land acquisition method is the dominant factor.
+
+---
+
+## Net Profit & Distributable Income / 净利润与可供分配 (2025 AR)
+
+| Fund | Net Profit | Distributable | Gap (=Depr) | Source |
+|------|:---:|:---:|:---:|------|
+| 城投宽庭 | 8,443K | ~12,800K | 4,357K | [AR] P30+P35 |
+| 华润有巢 | 1,148K | 5,056K | 3,908K | [AR] P28+P38 |
+| 上海城方 | ~1,141K | 5,100K | 3,959K | [AR] Q2-Q4 |
+| 恒泰租住 | **-1,668K** | 3,791K | 3,999K+2,080K(Impar) | [AR] |
+| 中金厦门 | ~3,000K | 5,952K | 2,952K | [AR] P25+P38 |
+| 红土深圳 | 2,256K | 4,767K | 2,511K | [AR] P22+P35 |
+| 北京保障房 | 4,538K | 7,482K | 2,944K | [AR] P24+P38 |
+
+---
+
+## ROI & Distribution Rate Rankings / ROI与分派率排名
+
+### ROI (Net Profit basis / 净利润口径)
+
+| # | Fund | ROI | Rating |
+|:---:|------|:---:|:---:|
+| 1 | 城投宽庭 | **3.21%** | 🟢 |
+| 2 | 中金厦门 | **2.47%** | 🟢 |
+| 3 | 北京保障房 | **2.08%** | 🟢 |
+| 4 | 红土深圳 | 1.93% | 🟡 |
+| 5 | 上海城方 | 1.20% | 🔴 |
+| 6 | 华润有巢 | 0.97% | 🔴 |
+| — | 恒泰租住 | -1.18% | 🔴 |
+
+### Distribution Rate / 分派率
+
+| # | Fund | Rate | NAV/Asset |
+|:---:|------|:---:|:---:|
+| 1 | 中金厦门 | **4.84%** | 1.01x ← no premium |
+| 2 | 上海城方 | ~3.70% | ~1.79x |
+| 3 | 城投宽庭 | 3.29% | 1.15x |
+| 4 | 红土深圳 | 2.70% | 1.00x |
+| 5 | 北京保障房 | 2.53% | 0.99x |
+| 6 | 恒泰租住 | 2.09% | ~0.97x |
+| 7 | 华润有巢 | 1.80% | ~2.35x ← expansion dilution |
+
+---
+
+## ROI vs Distribution: Why the Gap? / ROI与分派率差异分析
+
+### The Core Mechanism / 核心机制
 
 ```
-一、研究对象（按上海/非上海分列，标注最新可出租面积、出租率）
-二、资产成本详解（每只REIT的土地成本+建安成本分项+土地占比+页码）
-三、最新财报核心数据（净利润/可供分配/经营现金流，标注报告类型和页码）
-四、ROI排名（按最新年报）
-五、现金流分派率排名（按最新年报+净资产/资产成本比）
-六、折旧率与压缩倍数对比
-七、现金来源定量拆解（每只基金单独拆解：净利润→加折旧→减资本支出→等于可供分配）
-八、最新季报追踪（如有）
-九、全市场综合对比表
-十、判断结论（按D.2评级）
+Distributable Income = Net Profit + Depreciation − CapEx + Adjustments
+The "extra" money = Depreciation − Actual CapEx
 ```
 
-### E.2 报告文件命名规范
+Buildings last 50-70 years, depreciated over 20-30 years → depreciation far exceeds actual maintenance → the gap is distributable cash.
+
+### Comprehensive Comparison / 综合对比
+
+| Fund | NP | Distributable | Multiple | Depr Rate | NAV/Asset |
+|------|:---:|:---:|:---:|:---:|:---:|
+| 城投宽庭 | 8,443K | 12,800K | 1.52x | 1.65% | 1.15x |
+| 华润有巢 | 1,148K | 5,056K | **4.40x** | 3.29% | 2.35x |
+| 上海城方 | 1,141K | 5,100K | **4.47x** | 4.18% | 1.79x |
+| 恒泰租住 | -1,668K | 3,791K | — | 2.9% | 0.97x |
+| 中金厦门 | 3,000K | 5,952K | 1.98x | 2.43% | 1.01x |
+| 红土深圳 | 2,256K | 4,767K | 2.11x | 2.15% | 1.00x |
+| 北京保障房 | 4,538K | 7,482K | 1.65x | 1.35% | 0.99x |
+
+### Health Thresholds / 健康阈值
+
+| Metric | 🟢 Healthy | 🔴 Warning |
+|------|:---:|:---:|
+| ROI | ≥ 2% | < 1.5% |
+| Distribution Rate | ≥ 3% | < 2.5% |
+| Depreciation Rate | 1.5-3%/yr | > 4%/yr |
+| Compression Multiple | 1.5-3x | > 4x |
+
+---
+
+## Quantitative Framework / 定量框架
+
+### 8 Mandatory Data Points / 8项必获取
+
+| # | Metric | Location | Use |
+|---|------|------|------|
+| 1 | Net Profit | Income Statement | ROI numerator |
+| 2 | Distributable Income | Notes (Distributable Calc) | Distribution numerator |
+| 3 | Depreciation | Cash Flow Supplement | Depreciation rate |
+| 4 | Revenue | Income Statement | Margin analysis |
+| 5 | Operating Cash Flow | Cash Flow Statement | Cash conversion |
+| 6 | Asset Cost | Investment Property / Prospectus | ROI denominator |
+| 7 | Period-End NAV | Balance Sheet | Distribution denominator |
+| 8 | Land Cost | Prospectus Details | Land ratio |
+
+### Workflow / 执行流程
 
 ```
-/mnt/d/claude-home/projects/-Users-shuohuang/reits-analysis-<YYYY>.md
+Step 0: Determine current data window
+Step 1: Web-search latest reports
+Step 2: Extract 8 data points with page numbers
+Step 3: Populate template
+Step 4: Cross-validate formulas
+Step 5: Calculate 6 core metrics
+Step 6: Output health judgments
+Step 7: Update comparison table
+Step 8: Sync this skill file if needed
 ```
 
-### E.3 数据展示要求
+---
 
-- 每个表格必须标注数据来源（报告类型+页码）
-- 估算值标注"(估)"并说明估算依据
-- 缺失数据标注"待获取"并说明原因
-- 横向对比表必须包含所有基金，不得遗漏
+## Data Provenance Standard / 数据溯源标准
+
+```
+[Annual Report] Fund Name Year | P<page> | Location
+[Prospectus] Fund Name Prospectus | P<page> | Location
+[Quarterly] Fund Name Year QX | P<page> | Location
+[Expansion] Fund Name Expansion Completion | Date | Location
+```
 
 ---
 
-## Part F：已知错误与陷阱（经验积累）
+## History / 历史
 
-### F.1 数据陷阱
-
-| 陷阱 | 说明 | 应对 |
-|------|------|------|
-| 基金代码重复 | 180401和180501是同一只REIT的不同份额 | 统一称"180401/180501" |
-| 扩募后数据 | 华夏北京2025.6扩募、华润有巢2025.12扩募→数据不可同比 | 标注"扩募前/扩募后" |
-| 新上市无全年数据 | 汇添富上海仅Q2-Q4(9个月)、华泰苏州恒泰仅8个月 | 标注"年化" |
-| 招股书页码 | 不同来源PDF页码可能不同，以官方PDF为准 | 标注具体章节名辅助定位 |
-| 净利润vs本期利润 | REIT年报有两个利润概念，"本期利润"可能含公允价值变动 | 统一用"净利润"（不含公允价值变动） |
-
-### F.2 已验证的错误记录
-
-| 错误来源 | 错误内容 | 正确内容 | 验证方式 |
-|---------|---------|---------|---------|
-| skill v2.0 | 508072 华夏北京高碑店，独立REIT | **代码不存在**。仅508068华夏北京保障房 | 联网搜索无此代码任何结果 |
-| skill v2.0 | 508085 "交小苏州恒泰" | **华泰苏州恒泰租赁住房REIT**，管理人华泰证券资管 | 东方财富/上交所公告 |
-| skill v2.0 | 汇添富上海上市日 2025-04-02 | **2025-03-31** | 上交所公告 |
-| skill v2.0 | 城投宽庭上市日 2024-04-09 | **2023年12月**（2024年1月挂牌） | 基金公告 |
+| Date | Version | Changes | Window |
+|------|------|------|------|
+| 2026-05-30 | v4.0 | Internationalized EN/CN + timeliness rules | 2025 AR |
+| 2026-05-30 | v3.0 | Web verification + Q1 data + precise sourcing | Same |
+| 2026-05-29 | v2.0 | Initial creation | Local only |
 
 ---
 
-## Part G：最新研究数据快照（2026-05-30）
-
-> ⚠️ 以下为最新一次研究的静态数据，仅供快速参考。**每次新研究必须重新联网搜索，不得直接使用。**
-
-### G.1 研究对象（7只，已验证）
-
-| 代码 | 名称 | 地区 | 上市日 | 2026Q1出租率 | 2025年报ROI | 2025年报分派率 |
-|------|------|:---:|--------|:---:|:---:|:---:|
-| 508031 | 国泰海通城投宽庭 | 上海 | 2023-12 | 93.3%/92.4% | 3.21% | 3.29% |
-| 508077 | 华夏华润有巢 | 上海 | 2022-12 | 95.1% | 0.97% | 1.80% |
-| 508055 | 汇添富上海地产 | 上海 | 2025-03 | — | 1.20%(年化) | 3.70%(年化) |
-| 508085 | 华泰苏州恒泰 | 上海 | 2025-05 | 97.8% | -1.18% | 2.09% |
-| 508058 | 中金厦门安居 | 非上海 | 2022-08 | 99.1% | 2.47% | 4.84% |
-| 180401 | 红土深圳安居 | 非上海 | 2022-08 | 96.9% | 1.93% | 2.70% |
-| 508068 | 华夏北京保障房 | 非上海 | 2022-08 | 94.8% | 2.08% | 2.53% |
-
-### G.2 资产成本与土地占比快照
-
-| 基金 | 资产成本 | 土地成本 | 土地占比 | 来源 |
-|------|:------:|:------:|:---:|------|
-| 城投宽庭 | 26.34亿 | ~9.2亿(估) | ~35% | [年报] P50 |
-| 华润有巢 | 11.89亿 | 3.05亿 | 25.7% | [招股书] P150 |
-| 汇添富上海 | 9.48亿 | ~3.0亿(估) | ~32% | [招股书] P89 |
-| 华泰苏州恒泰 | 14.12亿 | 2.67亿 | 18.9% | [招股书] P76 |
-| 中金厦门安居 | 12.14亿 | ~3.3亿(估) | ~27% | [招股书] P95 |
-| 红土深圳安居 | 11.70亿 | 5.82亿 | 49.7% | [招股书] P102 |
-| 华夏北京 | 21.86亿(扩募后) | ~5.5亿(估) | ~25% | [招股书] P110+扩募公告 |
-
-### G.3 2026Q1季报快照
-
-| 基金 | Q1收入 | Q1净利润 | Q1可供分配 | 年化分派率 | Q1出租率 |
-|------|:-----:|:-----:|:-----:|:-----:|:-----:|
-| 城投宽庭 | 4,523万 | 2,021万 | 3,160万 | 3.42% | 93.3%/92.4% |
-| 华润有巢 | 3,378万 | — | 2,254万 | 3.51% | 95.1% |
-| 华泰苏州恒泰 | 2,029万 | 515万 | 1,444万 | 3.30% | 97.8% |
-| 中金厦门安居 | 2,056万 | 837万 | 1,494万 | 2.96% | 99.1% |
-| 红土深圳安居 | 1,396万 | 576万 | 1,180万 | 2.84% | 96.9% |
-| 华夏北京 | 3,256万 | 1,374万 | 2,243万 | 3.12% | 94.8% |
-
----
-
-## Part H：研究历史
-
-| 日期 | 版本 | 更新内容 | 数据窗口 |
-|------|------|---------|---------|
-| 2026-05-30 | v4.0 | 重构为方法论+数据快照双轨；Part A-F永恒方法+Part G数据 | 2025年报+2026Q1 |
-| 2026-05-30 | v3.0 | 联网验证修正+Q1季报+土地占比+精确出处+现金流拆解 | 同上 |
-| 2026-05-29 | v2.0 | 初始创建 | 仅本地数据 |
-
----
-
-*v4.0 — 2026-05-30*
-*方法论文档（Part A-F 永恒，Part G 每期更新）*
-*配套文件: /mnt/d/claude-home/projects/-Users-shuohuang/reits-analysis-2025-v2.md*
-*下游 skill: dahua-reits-benchmark — 将本 skill 产出的 REITs 数据用于大华享寓经营对标分析*
+*v4.0 — EN primary, CN secondary / 英文为主中文为辅*
+*Compatible: Claude Code · OpenClaw · Hermes · Codex · Any AI Agent*
